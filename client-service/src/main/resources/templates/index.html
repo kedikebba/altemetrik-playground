@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="Kedi Kebba">
+    <link rel="icon" href="favicon.ico">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/cerulean/bootstrap.min.css" rel="stylesheet" integrity="sha384-EmRcsPP774S9MOi4ywB+JXUWjYnBdyInMzG2XsC5siZEUpexqxOMJW358dCYEjPu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/master.css}">
+    <title>Altimetrik Playground - Vehicle System</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        form.example input[type=text] {
+            padding: 10px;
+            font-size: 17px;
+            border: 1px solid grey;
+            float: left;
+            width: 80%;
+            background: #f1f1f1;
+        }
+
+        form.example button {
+            float: left;
+            width: 20%;
+            padding: 10px;
+            background: #2196F3;
+            color: white;
+            font-size: 17px;
+            border: 1px solid grey;
+            border-left: none;
+            cursor: pointer;
+        }
+
+        form.example button:hover {
+            background: #0b7dda;
+        }
+
+        form.example::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a style="padding-right: 2em;" class="navbar-brand" href="/frontend/home">Altimetrik Playground - Vehicle System</a>
+
+</nav>
+<br>
+<br>
+<form class="example" action="frontend/search">
+    <input type="text" placeholder="Search.." name="vinNumber">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<div style="padding-top:1em;" class="container">
+    <div>
+        <span style="font-size: 2em; color: #32a5e7;"> VIN Search Results</span>
+    </div>
+
+    <p>&nbsp;</p>
+    <div style="font-size: 1em">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Vehicle VIN</th>
+
+                <th scope="col">Vehicle Make</th>
+                <th scope="col">Vehicle Model</th>
+                <th scope="col">Vehicle Type</th>
+                <th scope="col">Vehicle Location</th>
+                <th scope="col">Vehicle Country</th>
+
+            </tr>
+            </thead>
+            <tbody th:object="${vehicleList}">
+            <tr th:each="vehicle,iterStat : ${vehicleList}">
+                <th scope="row" th:text="${iterStat.count}"></th>
+                <td th:text="${vehicle.vehicleVIN}"></td>
+                <td th:text="${vehicle.vehicleMake}"></td>
+                <td th:text="${vehicle.vehicleModel}"></td>
+                <td th:text="${vehicle.vehicleType}"></td>
+                <td th:text="${vehicle.vehiclePlantCity}"></td>
+                <td th:text="${vehicle.vehiclePlantCountry}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <span style="font-size: 2em; color: #32a5e7;"> Make Search Results</span>
+    </div>
+
+    <p>&nbsp;</p>
+    <div style="font-size: 1em">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Make ID</th>
+
+                <th scope="col"> Make Name</th>
+                <th scope="col">Vehicle Type ID</th>
+                <th scope="col">Vehicle Type Name</th>
+
+
+            </tr>
+            </thead>
+            <tbody th:object="${vehicleMakes}">
+            <tr th:each="vehicleMake,iterStat : ${vehicleMakes}">
+                <th scope="row" th:text="${iterStat.count}"></th>
+                <td th:text="${vehicleMake.makeID}"></td>
+                <td th:text="${vehicleMake.makeName}"></td>
+                <td th:text="${vehicleMake.vehicleTypeID}"></td>
+                <td th:text="${vehicleMake.vehicleTypeName}"></td>
+
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <span style="font-size: 2em; color: #32a5e7;"> Model Search Results</span>
+    </div>
+
+    <p>&nbsp;</p>
+    <div style="font-size: 1em">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Make ID</th>
+                <th scope="col"> Make Name</th>
+                <th scope="col"> Model ID</th>
+                <th scope="col">Model Name</th>
+
+            </tr>
+            </thead>
+            <tbody th:object="${vehicleModels}">
+            <tr th:each="vehicleModel,iterStat : ${vehicleModels}">
+                <th scope="row" th:text="${iterStat.count}"></th>
+
+                <td th:text="${vehicleModel.makeID}"></td>
+                <td th:text="${vehicleModel.makeName}"></td>
+                <td th:text="${vehicleModel.modelID}"></td>
+                <td th:text="${vehicleModel.modelName}"></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Kedi Wagobera Edgar : : : Maharishi University Of Management</span>
+        <span style="float:right;" class="text-muted">&copy; December 2019</span>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>
