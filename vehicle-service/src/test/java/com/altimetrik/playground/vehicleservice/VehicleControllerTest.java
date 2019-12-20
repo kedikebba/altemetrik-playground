@@ -36,14 +36,14 @@ public class VehicleControllerTest {
         mockMvc.perform(get("/decode/2C8GP64L070017305")
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath(("$.id"), Matchers.is(289)))
-                .andExpect(jsonPath(("$.countryCode"), Matchers.is("US")))
-                .andExpect(jsonPath(("$.countryName"), Matchers.is("United States")))
-                .andExpect(jsonPath(("$.countryRegion"), Matchers.is("")))
-                .andExpect(jsonPath(("$.countryLending"), Matchers.is("Not classified")))
-                .andExpect(jsonPath(("$.countryIncome"), Matchers.is("High income")))
-                .andExpect(jsonPath(("$.countryLat"), Matchers.is("38.8895")))
-                .andExpect(jsonPath(("$.countryLong"), Matchers.is("-77.032")));
+                .andExpect(jsonPath(("$."), Matchers.is("")))
+                .andExpect(jsonPath(("$."), Matchers.is("")))
+                .andExpect(jsonPath(("$."), Matchers.is("")))
+                .andExpect(jsonPath(("$."), Matchers.is("")))
+                .andExpect(jsonPath(("$."), Matchers.is("")))
+                .andExpect(jsonPath(("$."), Matchers.is("")))
+                .andExpect(jsonPath(("$."), Matchers.is("")))
+                .andExpect(jsonPath(("$."), Matchers.is("")));
     }
 
 }
